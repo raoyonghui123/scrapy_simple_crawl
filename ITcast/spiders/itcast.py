@@ -10,7 +10,7 @@ class ItcastSpider(CrawlSpider):
 #    allowed_domains = ['http://www.itcast.cn']
     start_urls = ['https://tw.appledaily.com/new/realtime']
     rules = [
-    	Rule(LinkExtractor(allow=('/new/realtime/.*$')), callback='parse_list', follow = True) # crawl 1-3 pages
+    	Rule(LinkExtractor(allow=('/new/realtime/[1-3]$')), callback='parse_list', follow = True) # crawl 1-3 pages
     ]
 
     def parse_list(self, response):

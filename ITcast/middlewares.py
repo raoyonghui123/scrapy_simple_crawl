@@ -6,7 +6,8 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import logging
+import random
 
 class ItcastSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -54,3 +55,23 @@ class ItcastSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class ProxyMiddleWare(object):
+    proxy_list=[
+	'http://113.123.8.128:808',
+	'http://182.46.217.90:808', 
+	'http://113.122.6.225:808', 
+	'http://120.76.55.49:8088', 
+	'http://106.9.170.112:808', 
+	'http://223.240.210.40:808', 
+	'http://60.11.255.76:808', 
+	'http://101.68.73.54:53281', 
+	'http://106.14.241.155:80', 
+	'http://118.114.77.47:8080']
+
+
+    logger = logging.getLogger(__name__)
+    def process_request(self, request, spider):
+	ip = random.choice(self.proxy_list)
+	self.logger.debug('using proxy:'+ ip)
+	request.meta['proxy'] = ip
