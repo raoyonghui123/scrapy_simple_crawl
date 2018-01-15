@@ -4,3 +4,4 @@ A simple scrapy crawler to crawl news from https://tw.appledaily.com/new/realtim
 Store items into sqlite.
 
 Any question, please contact raoyonghui0630@gmail.com
+PS: haha
